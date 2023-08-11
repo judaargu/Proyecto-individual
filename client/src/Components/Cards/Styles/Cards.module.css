@@ -1,0 +1,29 @@
+.cards {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: center;
+}
+
+.pages{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+.pages h3{
+    padding: 0px 10px;
+}
+
+.pages button{
+    padding: 0px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.pages button:hover{
+    border-bottom: solid 2px #617A55;
+}
