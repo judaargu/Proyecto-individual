@@ -1,11 +1,11 @@
 require("dotenv").config();
 const axios = require("axios");
 const { URL, API_KEY } = process.env;
-const { Diet } = require("../db");
+const { DietsRecipe } = require("../db");
 
 const getDiets = async (req, res) => {
   try {
-    let diets = await Diet.findAll();
+    let diets = await DietsRecipe.findAll();
 
     if (!diets.length) {
       const { data } = await axios(
@@ -21,7 +21,7 @@ const getDiets = async (req, res) => {
         }
       });
 
-      const allDiets = await Diet.bulkCreate(
+      const allDiets = await DietsRecipe.bulkCreate(
         Array.from(set).map((diet) => {
           return { name: diet };
         

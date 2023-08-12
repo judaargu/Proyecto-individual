@@ -34,7 +34,7 @@ module.exports = (sequelize) => {
     steps: {
       type: DataTypes.ARRAY(DataTypes.JSON),
     },
-    dietsRecipe: {
+    diets: {
       type: DataTypes.ARRAY(DataTypes.STRING),
     },
   }, { timestamps: false });

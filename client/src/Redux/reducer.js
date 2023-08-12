@@ -1,4 +1,10 @@
-import { ADD_RECIPE, FILTER_DIETS, FILTER_RECIPES, ORDER } from "./actions";
+import {
+  GET_RECIPES,
+  ADD_RECIPE,
+  FILTER_DIETS,
+  FILTER_RECIPES,
+  ORDER,
+} from "./actions";
 
 const initialState = {
   myRecipes: [],
@@ -7,6 +13,13 @@ const initialState = {
 
 export default function rootReducer(state = initialState, action) {
   switch (action.type) {
+    case GET_RECIPES:
+      return {
+        ...state,
+        myRecipes: action.payload,
+        allRecipes: action.payload,
+      };
+
     case ADD_RECIPE:
       return {
         ...state,
@@ -15,7 +28,10 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case FILTER_DIETS:
-      return {};
+      return {
+        ...state,
+        myRecipes:state.allRecipes.filter((recipe) => recipe.diets.includes(action.payload)),
+      };
 
     case FILTER_RECIPES:
       return {};

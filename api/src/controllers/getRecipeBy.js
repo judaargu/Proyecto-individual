@@ -9,7 +9,7 @@ const getRecipeById = async (req, res) => {
   try {
     let { data } = await axios(`${URL}${id}/information?apiKey=${API_KEY}`);
 
-    return res.status(200).json(data.results);
+    return res.status(200).json(data);
   } catch (error) {
     return res
       .status(404)
@@ -27,7 +27,7 @@ const getRecipeByName = async (req, res) => {
       );
       
       const recipe = await Recipe.findAll();
-      const allRecipes = recipe.concat(data.results);
+      const allRecipes = [...recipe, ...data.results];
 
       return res.status(200).json(allRecipes);
     } catch (error) {

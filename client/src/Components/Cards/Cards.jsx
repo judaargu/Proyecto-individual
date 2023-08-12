@@ -1,6 +1,7 @@
-import React from "react";
 import Card from "../Card/Card";
+import { useEffect } from "react";
 import Style from "./Styles/Cards.module.css"
+
 
 export default function Cards(props) {
 
@@ -8,14 +9,13 @@ export default function Cards(props) {
     <div>
         <label>Filtrar por recetas: </label>
         <select>
-            <option></option>
             <option value='T'>Todas las recetas</option>
             <option value='M'>Mis recetas</option>
             <option value='P'>Recetas de la página</option>
         </select>
         <label>Filtrar por dieta: </label>
-        <select>
-            <option></option>
+        <select onChange={props.handleFilter}>
+            <option value='todas'>Todas las dietas</option>
             {props.allDiets.map(diet => {
                 return <option key={diet.id} value={diet.name}>{diet.name}</option>
             })}
@@ -37,7 +37,7 @@ export default function Cards(props) {
                 healthScore={recipe.healthScore}
                 steps={recipe.analyzedInstructions || recipe.steps}
                 image={recipe.image}
-                diets={recipe.diets || recipe.dietsRecipe}
+                diets={recipe.diets}
                 key={recipe.id}
                 />
             })}

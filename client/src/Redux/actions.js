@@ -1,8 +1,16 @@
-export const ADD_RECIPE = 'ADD_FAV';
+export const GET_RECIPES = 'GET_RECIPES';
+export const ADD_RECIPE = 'ADD_RECIPE';
 export const FILTER_DIETS = 'FILTER_DIETS';
 export const FILTER_RECIPES = 'FILTER_RECIPES';
 export const ORDER = 'ORDER';
 import axios from 'axios';
+
+export const getRecipes = (recipes) => {
+    return {
+        type: GET_RECIPES,
+        payload: recipes,
+    }
+}
 
 
 export const addRecipe = (recipe) => {
@@ -32,7 +40,7 @@ export const filterRecipes = (filter) => {
 
 export const filterDiets = (diet) => {
     return {
-        type: FILTER_RECIPES,
+        type: FILTER_DIETS,
         payload: diet,
     }
 }
