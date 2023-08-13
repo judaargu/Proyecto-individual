@@ -7,12 +7,14 @@ import Form from "./Components/Form page/Form";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import Nav from "./Components/Nav/Nav";
-import { filterDiets, getRecipes } from "./Redux/actions";
+import { getRecipes } from "./Redux/actions";
+import { next, prev } from "./pages";
+import { order } from "./order";
 const RECIPES_PER_PAGE = 9;
 
 function App() {
-  const [recipes, setRecipes] = useState();
   const [access, setAccess] = useState(false);
+  const [allRecipes, setAllRecipes] = useState([]);
   const [allDiets, setAllDiets] = useState([]);
   const [showRecipes, setShowRecipes] = useState([]);
   const [current, setCurrent] = useState(0);
@@ -38,7 +40,7 @@ function App() {
       }
 
       const data = await response.json();
-      setRecipes(data);
+      setAllRecipes(data);
       dispatch(getRecipes(data));
       setShowRecipes([...data].splice(0, RECIPES_PER_PAGE));
     } catch (error) {
@@ -70,9 +72,9 @@ function App() {
       }
 
       const data = await response.json();
-      setRecipes(data);
-      setShowRecipes([...data].splice(0, RECIPES_PER_PAGE));
       dispatch(getRecipes(data));
+      setAllRecipes(data)
+      setShowRecipes([...data].splice(0, RECIPES_PER_PAGE));
       setCurrent(0);
     } catch (error) {
       return console.log(error.message);
@@ -80,33 +82,53 @@ function App() {
   };
 
   const handleFilter = (event) => {
-    
-    dispatch(filterDiets(event.target.value));
+
+    if (event.target.value !== 'todas'){
+      const filteredRecipes = allRecipes.filter(recipe => recipe.diets.includes(event.target.value));
+      setShowRecipes([...filteredRecipes].splice(0, RECIPES_PER_PAGE));
+      dispatch(getRecipes(filteredRecipes));
+      setCurrent(0)
+
+    } else {
+      setShowRecipes([...allRecipes].splice(0, RECIPES_PER_PAGE));
+      setCurrent(0);
+    }
+  };
+
+  const handleMyRecipes = (event) => {
+
+    if (event.target.value === 'M'){
+      const filteredRecipes = myRecipes.filter(recipe => typeof recipe.id === 'string');
+      setShowRecipes([...filteredRecipes].splice(0, RECIPES_PER_PAGE));
+      setCurrent(0);
+    } else if (event.target.value === 'P'){
+      const filteredRecipes = myRecipes.filter(recipe => typeof recipe.id === 'number');
+      setShowRecipes([...filteredRecipes].splice(0, RECIPES_PER_PAGE));
+      setCurrent(0);
+    } else {
+      setShowRecipes([...myRecipes].splice(0, RECIPES_PER_PAGE));
+      setCurrent(0);
+    }
 
   };
+
+  const orderRecipes = (event) => {
+
+    const ordered = order(myRecipes, event.target.value);
+    setShowRecipes([...ordered].splice(0, RECIPES_PER_PAGE));
+    setCurrent(0);
+
+  }
   
   const handlerPrev = () => {
-    const prev = current - 1;
-    const initialStep = prev * RECIPES_PER_PAGE;
+    prev(current, setCurrent, myRecipes, setShowRecipes);
 
-    if (prev < 0) return;
-
-    setShowRecipes([...myRecipes].splice(initialStep, RECIPES_PER_PAGE));
-
-    setCurrent(prev);
   };
 
   const handlerNext = () => {
-    const next = current + 1;
-    const initialStep = next * RECIPES_PER_PAGE;
+    next(current, setCurrent, myRecipes, setShowRecipes);
 
-    if (initialStep > myRecipes.length) return;
-
-    setShowRecipes([...myRecipes].splice(initialStep, RECIPES_PER_PAGE));
-
-    setCurrent(next);
   };
-
 
   return (
     <div className="App">
@@ -120,6 +142,8 @@ function App() {
               current={current}
               showRecipes={showRecipes}
               handleFilter={handleFilter}
+              handleMyRecipes={handleMyRecipes}
+              orderRecipes={orderRecipes}
               handlerNext={handlerNext}
               handlerPrev={handlerPrev}
               allDiets={allDiets}

@@ -1,5 +1,4 @@
 import Card from "../Card/Card";
-import { useEffect } from "react";
 import Style from "./Styles/Cards.module.css"
 
 
@@ -8,7 +7,7 @@ export default function Cards(props) {
   return (
     <div>
         <label>Filtrar por recetas: </label>
-        <select>
+        <select onChange={props.handleMyRecipes}>
             <option value='T'>Todas las recetas</option>
             <option value='M'>Mis recetas</option>
             <option value='P'>Recetas de la página</option>
@@ -21,12 +20,12 @@ export default function Cards(props) {
             })}
         </select>
         <label>Ordenar: </label>
-        <select>
+        <select onChange={props.orderRecipes}>
             <option></option>
-            <option value='aa'>Orden alfabético ascendente</option>
-            <option value='ad'>Orden alfabético descendente</option>
-            <option value='rs'>Orden por receta saludable</option>
-            <option value='rns'>Orden por receta poco saludable</option>
+            <option value='A'>Orden alfabético ascendente</option>
+            <option value='D'>Orden alfabético descendente</option>
+            <option value='RS'>Orden por receta saludable</option>
+            <option value='RNS'>Orden por receta poco saludable</option>
         </select>
         <div className={Style.cards}>
             {props.showRecipes.map(recipe => {
