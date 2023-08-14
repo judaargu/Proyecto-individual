@@ -6,27 +6,29 @@ export default function Cards(props) {
 
   return (
     <div>
-        <label>Filtrar por recetas: </label>
-        <select onChange={props.handleMyRecipes}>
-            <option value='T'>Todas las recetas</option>
-            <option value='M'>Mis recetas</option>
-            <option value='P'>Recetas de la página</option>
-        </select>
-        <label>Filtrar por dieta: </label>
-        <select onChange={props.handleFilter}>
-            <option value='todas'>Todas las dietas</option>
-            {props.allDiets.map(diet => {
-                return <option key={diet.id} value={diet.name}>{diet.name}</option>
-            })}
-        </select>
-        <label>Ordenar: </label>
-        <select onChange={props.orderRecipes}>
-            <option></option>
-            <option value='A'>Orden alfabético ascendente</option>
-            <option value='D'>Orden alfabético descendente</option>
-            <option value='RS'>Orden por receta saludable</option>
-            <option value='RNS'>Orden por receta poco saludable</option>
-        </select>
+        <div className={Style.filters}>
+            <label>Filtrar por recetas: </label>
+            <select onChange={props.handleMyRecipes}>
+                <option value='T'>Todas las recetas</option>
+                <option value='M'>Mis recetas</option>
+                <option value='P'>Recetas de la página</option>
+            </select>
+            <label>Filtrar por dieta: </label>
+            <select onChange={props.handleFilter}>
+                <option value='todas'>Todas las dietas</option>
+                {props.allDiets.map(diet => {
+                    return <option key={diet.id} value={diet.name}>{diet.name}</option>
+                })}
+            </select>
+            <label>Ordenar: </label>
+            <select onChange={props.orderRecipes}>
+                <option></option>
+                <option value='A'>Orden alfabético ascendente</option>
+                <option value='D'>Orden alfabético descendente</option>
+                <option value='RS'>Orden por receta saludable</option>
+                <option value='RNS'>Orden por receta poco saludable</option>
+            </select>
+        </div>
         <div className={Style.cards}>
             {props.showRecipes.map(recipe => {
                 return <Card

@@ -3,9 +3,10 @@
     width: 55%;  
     padding: 12px;
     border: none;
-    box-shadow: inset 0px 0px 3px 1px grey;
+    box-shadow: inset 0px 0px 3px 1px #617A55;
     border-radius: 5px;
     outline: 0px;
+    color: #617A55;
 }
 
 .search input:focus{

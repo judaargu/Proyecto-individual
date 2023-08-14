@@ -1,0 +1,41 @@
+.form, .formText{
+    width: 40%;
+    margin-left: 400px;
+    margin-top: 20px;
+    padding: 5px;
+    margin-bottom: 20px;
+    border: none;
+    box-shadow: inset 0px 0px 3px 1px #A4D0A4;
+    border-radius: 5px;
+    color: #617A55;
+}
+
+.form label, .form input, .form textarea {
+    margin: 10px 0px;
+}
+
+.form button, .buttonForm {
+    margin: 10px 0px;
+    padding: 7px ;
+    background-color: #fff;
+    box-shadow: inset 0px 0px 3px 1px #617A55;
+    border: none;
+    border-radius: 5px;
+    transition: all .6s;
+}
+
+.form button:hover, .buttonForm:hover {
+    color: #617A55;
+    background-color: #FFF8D6;
+    transform: scale(1.05);
+}
+
+.formText input, .form input, .form textarea {
+    width: 100%;
+    border: none;
+    outline: 0px;
+}
+
+.formText input:focus, .form input:focus, .form textarea:focus {
+    border-bottom: solid 1px #617A55;
+}
