@@ -2,6 +2,7 @@ require("dotenv").config();
 const axios = require("axios");
 const { URL, API_KEY } = process.env;
 const { DietsRecipe } = require("../db");
+// const data = require('../foodComplexSearch.json')
 
 const getDiets = async (req, res) => {
   try {

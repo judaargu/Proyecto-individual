@@ -34,7 +34,6 @@ function App() {
 
     try {
       let response = await fetch(`http://localhost:3001/recipes`);
-
       if (!response.ok) {
         return window.alert("hubo un problema al cargar las recetas");
       }

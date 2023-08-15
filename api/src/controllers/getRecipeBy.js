@@ -2,6 +2,7 @@ require("dotenv").config();
 const axios = require("axios");
 const { URL, API_KEY } = process.env;
 const { Recipe } = require("../db");
+// const dataJson = require('../foodComplexSearch.json');
 
 const getRecipeById = async (req, res) => {
   const { id } = req.params;
@@ -22,10 +23,12 @@ const getRecipeById = async (req, res) => {
     }
   }
 
-  // } else {
-    
-    
-  // }
+  // let [data] = dataJson.results.filter(recipe => recipe.id === Number(id));
+
+  // if (data) return res.status(200).json(data);
+  
+  // else return res.status(404).json(`El id '${id}' no existe`);
+
 };
 
 const getRecipeByName = async (req, res) => {
@@ -60,7 +63,24 @@ const getRecipeByName = async (req, res) => {
       return res.status(500).json(error.message);
     }
   }
-  
+
+  // if (!name){
+  //   const recipes = await Recipe.findAll();
+  //   const data = dataJson.results;
+  //   const allRecipes = [ ...recipes, ...data];
+  //   return res.status(200).json(allRecipes);
+
+  // } else {
+  //   let data = dataJson.results.filter(recipe => recipe.title.toLowerCase().includes(name));
+  //   const recipes = await Recipe.findAll({where: {name}});
+  //   const allRecipes = [...recipes, ...data];
+    
+  //   if (allRecipes.length) return res.status(200).json(allRecipes);
+    
+  //   else return res.status(404).json(`No existen recetas con el nombre '${name}'`);
+    
+  // }
+
 };
 
 module.exports = {
