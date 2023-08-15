@@ -91,6 +91,7 @@ function App() {
 
     } else {
       setShowRecipes([...allRecipes].splice(0, RECIPES_PER_PAGE));
+      dispatch(getRecipes(allRecipes));
       setCurrent(0);
     }
   };
@@ -132,7 +133,7 @@ function App() {
 
   return (
     <div className="App">
-      {location.pathname !== "/" && <Nav onSearch={onSearch} />}
+      {location.pathname !== "/" && <Nav onSearch={onSearch} onClick={onClick}/>}
       <Routes>
         <Route path="/" element={<LandingPage onClick={onClick} />}></Route>
         <Route

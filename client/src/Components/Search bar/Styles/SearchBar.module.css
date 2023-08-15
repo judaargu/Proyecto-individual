@@ -1,14 +1,18 @@
+.search {
+    width: 40%;
+}
+
 .search input {
     margin: 0px 15px;
-    width: 55%;  
+    width: 70%;  
     padding: 12px;
     border: none;
-    box-shadow: inset 0px 0px 3px 1px #617A55;
+    box-shadow: inset 0px 0px 3px 1px #A4D0A4;
     border-radius: 5px;
     outline: 0px;
     color: #617A55;
 }
 
 .search input:focus{
-    border-bottom: solid 2px #617A55;
+    border-bottom: solid 2px #A4D0A4;
 } 

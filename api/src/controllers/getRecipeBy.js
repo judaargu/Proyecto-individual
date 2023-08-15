@@ -8,13 +8,24 @@ const getRecipeById = async (req, res) => {
 
   try {
     let { data } = await axios(`${URL}${id}/information?apiKey=${API_KEY}`);
-
+    
     return res.status(200).json(data);
   } catch (error) {
-    return res
-      .status(404)
-      .json({ error: error.message + ": " + id + " does not exist" });
+
+    try {
+
+      const [recipe] = await Recipe.findAll({where: {id}});
+      return res.status(200).json(recipe);
+
+    } catch (error) {
+      return res.status(404).json({ error: error.message + ": " + id + " does not exist" });
+    }
   }
+
+  // } else {
+    
+    
+  // }
 };
 
 const getRecipeByName = async (req, res) => {

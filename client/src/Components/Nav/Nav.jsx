@@ -14,7 +14,7 @@ export default function Nav (props) {
             <div className={Style.nav}>
                 <Link to='/form'><button>Nueva receta</button></Link>
                 {location.pathname === '/home' && <SearchBar onSearch={props.onSearch}/>}
-                <Link to='/home'><button>Home</button></Link>
+                <Link to='/home'><button onClick={props.onClick}>Home</button></Link>
             </div>
         </div>
     )

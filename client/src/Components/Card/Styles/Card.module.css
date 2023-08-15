@@ -1,0 +1,47 @@
+.cardStyle {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    margin-left: 120px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: none;
+    box-shadow: inset 0px 0px 3px 1px #A4D0A4;
+    border-radius: 5px;
+    color: #617A55;
+    transition: all .6s;
+
+}
+
+.cardStyle:hover {
+    background-color: #FFF8D6;
+    text-decoration: underline #617A55;
+    transform: scale(1.03);
+}
+
+.image {
+    width: 30%;
+    height: 100%;
+    margin-right: 60px;
+}
+
+image img {
+    border-radius: 5px;
+}
+
+.info {
+    width: 70%;
+    /* height: 100%; */
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    padding-top: 20px; 
+}
+
+.info h2 {
+    margin-bottom: 10px;
+}
+
+.navLink {
+    text-decoration: none;
+}
